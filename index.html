@@ -1,603 +1,1125 @@
 <!doctype html>
+
 <html lang="fa" dir="rtl" data-theme="dark">
+
 <head>
+
   <meta charset="utf-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <meta name="theme-color" content="#111412">
+
   <meta name="description" content="راهنمای استفاده صحیح از پی‌را؛ مدیریت بدهی‌ها، طلب‌ها، یادداشت‌ها و گزارش‌های مالی.">
+
   <title>مستندات پی‌را | PayRa Docs</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="https\://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+
   <link rel="icon" type="image/svg+xml" sizes="32x32" href="./favicon.svg">
+
   <link rel="icon" type="image/svg+xml" sizes="192x192" href="./favicon.svg">
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+    @import url('https\://fonts.googleapis.com/css2?family=Vazirmatn:wght\@400;500;600;700;800&display=swap');
+
     :root {
+
       color-scheme: dark;
+
       --bg:#111412; --panel:#171b18; --panel2:#1d231f; --text:#edf1ed;
+
       --muted:#a0aaa2; --line:#2b332d; --accent:#57c99a; --accent2:#2d9b70;
+
       --accent-soft:rgba(87,201,154,.12); --warning:#e6b86a; --danger:#f17f7f;
+
       --shadow:0 14px 40px rgba(0,0,0,.18); --code:#0b0e0c;
-    }
-    [data-theme="light"] {
-      color-scheme:light; --bg:#f5f6f3; --panel:#fff; --panel2:#f0f3ef;
-      --text:#202722; --muted:#68736b; --line:#dfe5de; --accent:#187c57;
-      --accent2:#116947; --accent-soft:rgba(24,124,87,.09); --warning:#94620b;
-      --danger:#bd4141; --shadow:0 14px 40px rgba(24,40,28,.07); --code:#eef2ed;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:88px}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;line-height:1.9}
-    a{color:inherit;text-decoration:none}
-    button,input{font:inherit}
-    button{cursor:pointer}
-    .topbar{height:68px;position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 max(22px,calc((100vw - 1400px)/2));gap:18px}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:800;white-space:nowrap}
-    .brand-mark{width:36px;height:36px;border-radius:11px;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));display:grid;place-items:center;color:var(--accent)}
-    .brand small{display:block;color:var(--muted);font-size:10px;line-height:1.2;letter-spacing:1.4px;direction:ltr;text-align:right}
-    .top-actions{margin-right:auto;display:flex;align-items:center;gap:10px}
-    .search{width:min(310px,32vw);height:40px;border:1px solid var(--line);background:var(--panel);border-radius:10px;display:flex;align-items:center;padding:0 12px;gap:9px;color:var(--muted)}
-    .search input{background:transparent;border:0;outline:0;color:var(--text);width:100%;min-width:0}
-    .key{border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:11px}
-    .icon-btn{height:40px;min-width:40px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:7px}
-    .layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:260px minmax(0,1fr);gap:38px;padding:30px 24px 70px}
-    aside{align-self:start;position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto;padding:8px 0 20px}
-    .nav-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;padding:14px 12px 7px}
-    .nav-link{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:9px;color:var(--muted);font-size:13px;margin:2px 0;border:1px solid transparent;transition:.15s}
-    .nav-link:hover{background:var(--panel);color:var(--text)}
-    .nav-link.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent);font-weight:700}
-    .nav-link .num{font-size:11px;opacity:.75;min-width:20px}
-    main{min-width:0;max-width:900px}
-    .crumb{font-size:12px;color:var(--muted);margin:3px 0 18px}
-    .hero{padding:30px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--panel),var(--panel2));box-shadow:var(--shadow);position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:var(--accent-soft);left:-100px;top:-110px;filter:blur(2px)}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:12px;font-weight:700;background:var(--accent-soft);border-radius:30px;padding:4px 11px}
-    h1{font-size:clamp(28px,4vw,42px);line-height:1.45;margin:16px 0 8px;letter-spacing:-.7px}
-    .hero p{color:var(--muted);max-width:650px;margin:0;font-size:15px}
-    .hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:12px}
-    .hero-meta span{display:flex;align-items:center;gap:6px}
-    .callout{display:flex;gap:12px;padding:15px 17px;border:1px solid var(--line);border-right:3px solid var(--accent);background:var(--accent-soft);border-radius:10px;margin:22px 0;color:var(--text);font-size:13px}
-    .callout.warning{border-right-color:var(--warning);background:color-mix(in srgb,var(--warning) 8%,var(--panel))}
-    .callout.danger{border-right-color:var(--danger);background:color-mix(in srgb,var(--danger) 7%,var(--panel))}
-    .callout strong{display:block;margin-bottom:2px}
-    section.doc-section{padding:28px 0;border-bottom:1px solid var(--line)}
-    .section-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:17px}
-    .section-num{flex:0 0 38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:13px}
-    h2{font-size:23px;line-height:1.6;margin:0 0 5px}
-    h3{font-size:16px;margin:22px 0 8px}
-    .section-head p{margin:0;color:var(--muted);font-size:13px}
-    p{margin:8px 0 13px}
-    .grid-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:17px 0}
-    .mini-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-    .mini-card .symbol{color:var(--accent);font-size:19px;margin-bottom:5px}
-    .mini-card h3{margin:0 0 4px;font-size:14px}
-    .mini-card p{font-size:12px;color:var(--muted);margin:0}
-    ul,ol{padding-right:22px;margin:8px 0 15px}
-    li{padding:3px 0}
-    li::marker{color:var(--accent)}
-    .steps{counter-reset:step;list-style:none;padding:0}
-    .steps li{position:relative;padding:0 43px 18px 0;min-height:35px}
-    .steps li:before{counter-increment:step;content:counter(step);position:absolute;right:0;top:1px;width:29px;height:29px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;color:var(--accent);font-size:12px;font-weight:700;background:var(--panel)}
-    .steps li:not(:last-child):after{content:"";position:absolute;right:14px;top:32px;bottom:0;border-right:1px dashed var(--line)}
-    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px;margin:14px 0}
-    table{width:100%;border-collapse:collapse;font-size:12px;min-width:490px;background:var(--panel)}
-    th,td{text-align:right;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
-    th{background:var(--panel2);font-weight:700}
-    tr:last-child td{border-bottom:0}
-    code{font-family:Consolas,monospace;direction:ltr;unicode-bidi:embed;background:var(--code);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.92em}
-    .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;background:var(--accent-soft);color:var(--accent);font-weight:600}
-    .pill.warn{background:color-mix(in srgb,var(--warning) 12%,transparent);color:var(--warning)}
-    .pill.red{background:color-mix(in srgb,var(--danger) 10%,transparent);color:var(--danger)}
-    .search-results{display:none;position:fixed;z-index:40;top:60px;right:max(20px,calc((100vw - 1400px)/2 + 280px));width:min(420px,calc(100vw - 40px));max-height:60vh;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow);padding:8px}
-    .search-results.show{display:block}
-    .result-item{padding:10px;border-radius:8px;display:block}
-    .result-item:hover{background:var(--panel2)}
-    .result-item strong{display:block;font-size:13px}
-    .result-item small{color:var(--muted)}
-    .empty{padding:18px;color:var(--muted);font-size:13px;text-align:center}
-    .faq details{border:1px solid var(--line);background:var(--panel);border-radius:10px;margin:9px 0;padding:0 14px}
-    .faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:13px}
-    .faq details p{color:var(--muted);font-size:13px;margin:0 0 14px}
-    .footer{padding:30px 0 10px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .footer strong{color:var(--text);direction:ltr;display:inline-block}
-    .mobile-menu{display:none}
-    .no-results{display:none;border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted)}
-    mark{background:color-mix(in srgb,var(--warning) 28%,transparent);color:var(--text);border-radius:3px}
-    @media(max-width:900px){
-      .layout{grid-template-columns:1fr;gap:15px;padding:18px 17px 50px}
-      aside{display:none;position:fixed;z-index:30;top:68px;right:0;bottom:0;width:min(300px,85vw);max-height:none;background:var(--bg);border-left:1px solid var(--line);padding:15px;box-shadow:var(--shadow)}
-      aside.open{display:block}
-      .mobile-menu{display:inline-flex}
-      .topbar{padding:0 15px;gap:9px}
-      .search{width:min(220px,35vw)}
-      .key{display:none}
-      .hero{padding:23px}
-    }
-    @media(max-width:560px){
-      .brand small{display:none}.brand{font-size:14px}.topbar{height:62px}
-      .search{width:40px;padding:0;justify-content:center;border:0;background:transparent}
-      .search input{display:none}.search:focus-within{position:absolute;right:65px;left:105px;width:auto;padding:0 10px;background:var(--panel);border:1px solid var(--line)}
-      .search:focus-within input{display:block}
-      .grid-cards{grid-template-columns:1fr}
-      h1{font-size:28px}.hero-meta{gap:10px}
-      .layout{padding-top:17px}
+
     }
 
-    /* ===== Enhancements ===== */
+    [data-theme="light"] {
+
+      color-scheme:light; --bg:#f5f6f3; --panel:#fff; --panel2:#f0f3ef;
+
+      --text:#202722; --muted:#68736b; --line:#dfe5de; --accent:#187c57;
+
+      --accent2:#116947; --accent-soft:rgba(24,124,87,.09); --warning:#94620b;
+
+      --danger:#bd4141; --shadow:0 14px 40px rgba(24,40,28,.07); --code:#eef2ed;
+
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+
+    body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,sans-serif;line-height:1.9}
+
+    a{color:inherit;text-decoration:none}
+
+    button,input{font:inherit}
+
+    button{cursor:pointer}
+
+    .topbar{height:68px;position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 max(22px,calc((100vw - 1400px)/2));gap:18px}
+
+    .brand{display:flex;align-items:center;gap:11px;font-weight:800;white-space:nowrap}
+
+    .brand-mark{width:36px;height:36px;border-radius:11px;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));display:grid;place-items:center;color:var(--accent)}
+
+    .brand small{display:block;color:var(--muted);font-size:10px;line-height:1.2;letter-spacing:1.4px;direction:ltr;text-align:right}
+
+    .top-actions{margin-right:auto;display:flex;align-items:center;gap:10px}
+
+    .search{width:min(310px,32vw);height:40px;border:1px solid var(--line);background:var(--panel);border-radius:10px;display:flex;align-items:center;padding:0 12px;gap:9px;color:var(--muted)}
+
+    .search input{background:transparent;border:0;outline:0;color:var(--text);width:100%;min-width:0}
+
+    .key{border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:11px}
+
+    .icon-btn{height:40px;min-width:40px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:7px}
+
+    .layout{max-width:1400px;margin:auto;display:grid;grid-template-columns:260px minmax(0,1fr);gap:38px;padding:30px 24px 70px}
+
+    aside{align-self:start;position:sticky;top:90px;max-height:calc(100vh - 110px);overflow:auto;padding:8px 0 20px}
+
+    .nav-label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;padding:14px 12px 7px}
+
+    .nav-link{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:9px;color:var(--muted);font-size:13px;margin:2px 0;border:1px solid transparent;transition:.15s}
+
+    .nav-link:hover{background:var(--panel);color:var(--text)}
+
+    .nav-link.active{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent);font-weight:700}
+
+    .nav-link .num{font-size:11px;opacity:.75;min-width:20px}
+
+    main{min-width:0;max-width:900px}
+
+    .crumb{font-size:12px;color:var(--muted);margin:3px 0 18px}
+
+    .hero{padding:30px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--panel),var(--panel2));box-shadow:var(--shadow);position:relative;overflow:hidden}
+
+    .hero:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:var(--accent-soft);left:-100px;top:-110px;filter:blur(2px)}
+
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:12px;font-weight:700;background:var(--accent-soft);border-radius:30px;padding:4px 11px}
+
+    h1{font-size:clamp(28px,4vw,42px);line-height:1.45;margin:16px 0 8px;letter-spacing:-.7px}
+
+    .hero p{color:var(--muted);max-width:650px;margin:0;font-size:15px}
+
+    .hero-meta{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:12px}
+
+    .hero-meta span{display:flex;align-items:center;gap:6px}
+
+    .callout{display:flex;gap:12px;padding:15px 17px;border:1px solid var(--line);border-right:3px solid var(--accent);background:var(--accent-soft);border-radius:10px;margin:22px 0;color:var(--text);font-size:13px}
+
+    .callout.warning{border-right-color:var(--warning);background:color-mix(in srgb,var(--warning) 8%,var(--panel))}
+
+    .callout.danger{border-right-color:var(--danger);background:color-mix(in srgb,var(--danger) 7%,var(--panel))}
+
+    .callout strong{display:block;margin-bottom:2px}
+
+    section.doc-section{padding:28px 0;border-bottom:1px solid var(--line)}
+
+    .section-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:17px}
+
+    .section-num{flex:0 0 38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:800;font-size:13px}
+
+    h2{font-size:23px;line-height:1.6;margin:0 0 5px}
+
+    h3{font-size:16px;margin:22px 0 8px}
+
+    .section-head p{margin:0;color:var(--muted);font-size:13px}
+
+    p{margin:8px 0 13px}
+
+    .grid-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:17px 0}
+
+    .mini-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+
+    .mini-card .symbol{color:var(--accent);font-size:19px;margin-bottom:5px}
+
+    .mini-card h3{margin:0 0 4px;font-size:14px}
+
+    .mini-card p{font-size:12px;color:var(--muted);margin:0}
+
+    ul,ol{padding-right:22px;margin:8px 0 15px}
+
+    li{padding:3px 0}
+
+    li::marker{color:var(--accent)}
+
+    .steps{counter-reset:step;list-style:none;padding:0}
+
+    .steps li{position:relative;padding:0 43px 18px 0;min-height:35px}
+
+    .steps li:before{counter-increment:step;content:counter(step);position:absolute;right:0;top:1px;width:29px;height:29px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;color:var(--accent);font-size:12px;font-weight:700;background:var(--panel)}
+
+    .steps li:not(:last-child):after{content:"";position:absolute;right:14px;top:32px;bottom:0;border-right:1px dashed var(--line)}
+
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px;margin:14px 0}
+
+    table{width:100%;border-collapse:collapse;font-size:12px;min-width:490px;background:var(--panel)}
+
+    th,td{text-align:right;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+
+    th{background:var(--panel2);font-weight:700}
+
+    tr:last-child td{border-bottom:0}
+
+    code{font-family:Consolas,monospace;direction:ltr;unicode-bidi:embed;background:var(--code);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.92em}
+
+    .pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;background:var(--accent-soft);color:var(--accent);font-weight:600}
+
+    .pill.warn{background:color-mix(in srgb,var(--warning) 12%,transparent);color:var(--warning)}
+
+    .pill.red{background:color-mix(in srgb,var(--danger) 10%,transparent);color:var(--danger)}
+
+    .search-results{display:none;position:fixed;z-index:40;top:60px;right:max(20px,calc((100vw - 1400px)/2 + 280px));width:min(420px,calc(100vw - 40px));max-height:60vh;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);box-shadow:var(--shadow);padding:8px}
+
+    .search-results.show{display:block}
+
+    .result-item{padding:10px;border-radius:8px;display:block}
+
+    .result-item:hover{background:var(--panel2)}
+
+    .result-item strong{display:block;font-size:13px}
+
+    .result-item small{color:var(--muted)}
+
+    .empty{padding:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    .faq details{border:1px solid var(--line);background:var(--panel);border-radius:10px;margin:9px 0;padding:0 14px}
+
+    .faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:13px}
+
+    .faq details p{color:var(--muted);font-size:13px;margin:0 0 14px}
+
+    .footer{padding:30px 0 10px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    .footer strong{color:var(--text);direction:ltr;display:inline-block}
+
+    .mobile-menu{display:none}
+
+    .no-results{display:none;border:1px dashed var(--line);border-radius:12px;padding:30px;text-align:center;color:var(--muted)}
+
+    mark{background:color-mix(in srgb,var(--warning) 28%,transparent);color:var(--text);border-radius:3px}
+
+    @media(max-width:900px){
+
+      .layout{grid-template-columns:1fr;gap:15px;padding:18px 17px 50px}
+
+      aside{display:none;position:fixed;z-index:30;top:68px;right:0;bottom:0;width:min(300px,85vw);max-height:none;background:var(--bg);border-left:1px solid var(--line);padding:15px;box-shadow:var(--shadow)}
+
+      aside.open{display:block}
+
+      .mobile-menu{display:inline-flex}
+
+      .topbar{padding:0 15px;gap:9px}
+
+      .search{width:min(220px,35vw)}
+
+      .key{display:none}
+
+      .hero{padding:23px}
+
+    }
+
+    @media(max-width:560px){
+
+      .brand small{display:none}.brand{font-size:14px}.topbar{height:62px}
+
+      .search{width:40px;padding:0;justify-content:center;border:0;background:transparent}
+
+      .search input{display:none}.search:focus-within{position:absolute;right:65px;left:105px;width:auto;padding:0 10px;background:var(--panel);border:1px solid var(--line)}
+
+      .search:focus-within input{display:block}
+
+      .grid-cards{grid-template-columns:1fr}
+
+      h1{font-size:28px}.hero-meta{gap:10px}
+
+      .layout{padding-top:17px}
+
+    }
+
+
+    */* ===== Enhancements ===== */*
+
     :root{--ease:cubic-bezier(.22,.8,.3,1);--radius:14px}
+
     ::selection{background:color-mix(in srgb,var(--accent) 30%,transparent)}
+
     :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
     i.fa-solid,i.fa-regular{line-height:1}
+
     .progress{position:fixed;top:0;right:0;left:0;height:3px;z-index:60;background:linear-gradient(90deg,var(--accent2),var(--accent));transform:scaleX(0);transform-origin:right;will-change:transform}
+
     .overlay{display:none;position:fixed;inset:0;z-index:25;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
+
     .topbar{transition:box-shadow .3s}
+
     .brand-mark{transition:transform .5s var(--ease),background .3s}
+
     .brand:hover .brand-mark{transform:rotate(-8deg) scale(1.08);background:color-mix(in srgb,var(--accent) 22%,transparent)}
+
     .search{transition:border-color .2s,box-shadow .2s}
+
     .search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+
     .icon-btn{transition:transform .2s var(--ease),border-color .2s,background .2s}
+
     .icon-btn:hover{border-color:var(--accent);background:var(--panel2)}
+
     .icon-btn:active{transform:scale(.94)}
+
     #themeIcon{display:inline-block;transition:transform .5s var(--ease)}
+
     #themeBtn:hover #themeIcon{transform:rotate(25deg) scale(1.15)}
+
     .crumb{display:flex;align-items:center;gap:8px}
+
     .crumb .sep{font-size:9px;opacity:.6}
 
-    /* Sidebar */
+
+    */* Sidebar */*
+
     .nav-link{position:relative;transition:background .2s,color .2s,transform .25s var(--ease),border-color .2s}
+
     .nav-link i{width:18px;text-align:center;font-size:13px;opacity:.7;transition:transform .25s var(--ease),opacity .2s}
+
     .nav-link:hover{transform:translateX(-3px)}
+
     .nav-link:hover i,.nav-link.active i{opacity:1;transform:scale(1.12)}
+
     .nav-link.active:before{content:"";position:absolute;right:-1px;top:20%;bottom:20%;width:3px;border-radius:3px;background:var(--accent)}
+
     aside{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 
-    /* Hero: the one orchestrated moment */
+
+    */* Hero: the one orchestrated moment */*
+
     .hero{border-radius:22px;padding:38px}
+
     .hero:before{width:320px;height:320px;left:-110px;top:-140px;filter:blur(24px);animation:float 9s ease-in-out infinite}
+
     .hero:after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;right:-70px;bottom:-90px;background:color-mix(in srgb,var(--accent2) 16%,transparent);filter:blur(30px);animation:float 11s ease-in-out infinite reverse;pointer-events:none}
+
     .hero>*{position:relative;z-index:1;animation:rise .7s var(--ease) both}
+
     .hero>:nth-child(2){animation-delay:.08s}.hero>:nth-child(3){animation-delay:.16s}.hero>:nth-child(4){animation-delay:.24s}
+
     .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2s infinite}
+
     .hero-meta span{padding:5px 11px;border:1px solid var(--line);border-radius:30px;background:color-mix(in srgb,var(--panel) 70%,transparent);transition:border-color .2s,color .2s}
+
     .hero-meta span:hover{border-color:var(--accent);color:var(--text)}
+
     .hero-meta i{color:var(--accent)}
+
     @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
     @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,18px)}}
+
     @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
 
-    /* Sections */
+
+    */* Sections */*
+
     .section-num{transition:transform .35s var(--ease),background .3s,color .3s}
+
     .section-head:hover .section-num{transform:rotate(-6deg) scale(1.08);background:var(--accent);color:var(--bg)}
 
-    /* Cards */
+
+    */* Cards */*
+
     .mini-card{position:relative;overflow:hidden;border-radius:var(--radius);padding:18px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+
     .mini-card:hover,.mini-card.reveal.in:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:var(--shadow)}
+
     .mini-card .symbol{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;font-size:16px;margin-bottom:10px;transition:transform .35s var(--ease)}
+
     .mini-card:hover .symbol{transform:scale(1.1) rotate(-6deg)}
 
-    /* Callouts */
+
+    */* Callouts */*
+
     .callout{border-radius:12px;align-items:flex-start}
+
     .callout .c-ico{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+
     .callout.warning .c-ico{color:var(--warning);background:color-mix(in srgb,var(--warning) 16%,transparent)}
+
     .callout.danger .c-ico{color:var(--danger);background:color-mix(in srgb,var(--danger) 14%,transparent)}
 
-    /* Steps, tables, pills */
+
+    */* Steps, tables, pills */*
+
     .steps li{transition:transform .25s var(--ease)}
+
     .steps li:before{transition:background .25s,color .25s,transform .3s var(--ease)}
+
     .steps li:hover:before{background:var(--accent);color:var(--bg);transform:scale(1.1)}
+
     .table-wrap{border-radius:12px}
+
     tbody tr{transition:background .2s}
+
     tbody tr:hover{background:var(--accent-soft)}
+
     th{position:sticky;top:0}
+
     .pill{transition:transform .2s}
+
     tr:hover .pill{transform:scale(1.06)}
 
-    /* FAQ accordion */
+
+    */* FAQ accordion */*
+
     .faq details{border-radius:12px;transition:border-color .25s,background .25s}
+
     .faq details:hover{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+
     .faq details[open]{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));background:linear-gradient(180deg,var(--accent-soft),var(--panel) 70%)}
+
     .faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+
     .faq summary::-webkit-details-marker{display:none}
+
     .faq summary:after{content:"\f078";font-family:"Font Awesome 6 Free";font-weight:900;font-size:11px;color:var(--accent);transition:transform .3s var(--ease)}
+
     .faq details[open] summary:after{transform:rotate(180deg)}
+
     .faq details[open] p{animation:rise .35s var(--ease)}
 
-    /* Search results */
+
+    */* Search results */*
+
     .search-results{animation:rise .2s var(--ease);border-radius:14px}
+
     .result-item{transition:background .15s,transform .2s var(--ease)}
+
     .result-item:hover{transform:translateX(-3px)}
 
-    /* Back to top */
+
+    */* Back to top */*
+
     .to-top{position:fixed;bottom:22px;left:22px;z-index:35;width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--accent);box-shadow:var(--shadow);display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,transform .3s var(--ease),visibility .3s,background .2s}
+
     .to-top.show{opacity:1;visibility:visible;transform:none}
+
     .to-top:hover{background:var(--accent);color:var(--bg)}
 
-    /* Reveal (enabled only when JS runs) */
+
+    */* Reveal (enabled only when JS runs) */*
+
     .js .reveal{opacity:0;transform:translateY(14px)}
+
     .js .reveal.in{opacity:1;transform:none;transition:opacity .55s var(--ease),transform .55s var(--ease)}
 
+
     @media(max-width:900px){
+
       .menu-open .overlay{display:block;animation:fade .25s both}
+
       aside{transition:none}aside.open{animation:slideIn .3s var(--ease)}
+
       .hero{padding:26px}
+
     }
+
     @media(max-width:560px){.to-top{bottom:16px;left:16px}}
+
     @keyframes fade{from{opacity:0}to{opacity:1}}
+
     @keyframes slideIn{from{transform:translateX(40px);opacity:0}to{transform:none;opacity:1}}
+
     @media(prefers-reduced-motion:reduce){
+
       *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+
       .js .reveal{opacity:1;transform:none}
+
     }
+
   </style>
+
 </head>
+
 <body>
+
 <div class="progress" id="progress" aria-hidden="true"></div>
+
 <div class="overlay" id="overlay" aria-hidden="true"></div>
+
 <header class="topbar">
+
   <button class="icon-btn mobile-menu" id="menuBtn" aria-label="باز کردن فهرست"><i class="fa-solid fa-bars"></i></button>
+
   <a class="brand" href="#top" aria-label="صفحه اصلی مستندات پی‌را">
+
     <span class="brand-mark" aria-hidden="true">
+
       <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M4 8.2 12 4l8 4.2-8 4.2L4 8.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m4 12 8 4.2 8-4.2M4 15.8l8 4.2 8-4.2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+
     </span>
+
     <span>مستندات پی‌را <small>PAYRA DOCUMENTATION</small></span>
+
   </a>
+
   <div class="top-actions">
+
     <label class="search" aria-label="جست‌وجو در مستندات">
+
       <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="searchInput" type="search" placeholder="جست‌وجو در راهنما..." autocomplete="off">
+
       <span class="key">/</span>
+
     </label>
+
     <button class="icon-btn" id="themeBtn" aria-label="تغییر پوسته" title="تغییر پوسته"><i class="fa-solid fa-sun" id="themeIcon"></i><span class="theme-label">روشن</span></button>
+
   </div>
+
 </header>
+
 <div class="search-results" id="searchResults" role="listbox" aria-label="نتایج جست‌وجو"></div>
 
+
 <div class="layout" id="top">
+
   <aside id="sidebar" aria-label="فهرست مستندات">
+
     <div class="nav-label">شروع کار</div>
+
     <a class="nav-link active" href="#intro"><i class="fa-solid fa-compass"></i> معرفی پی‌را</a>
+
     <a class="nav-link" href="#before"><i class="fa-solid fa-list-check"></i> پیش از شروع</a>
+
     <a class="nav-link" href="#workflow"><i class="fa-solid fa-route"></i> گردش کار پیشنهادی</a>
+
     <div class="nav-label">مدیریت اطلاعات</div>
+
     <a class="nav-link" href="#people"><i class="fa-solid fa-users"></i> اشخاص و طرف‌حساب‌ها</a>
+
     <a class="nav-link" href="#debts"><i class="fa-solid fa-file-invoice-dollar"></i> ثبت بدهی‌ها</a>
+
     <a class="nav-link" href="#credits"><i class="fa-solid fa-hand-holding-dollar"></i> ثبت طلب‌ها</a>
+
     <a class="nav-link" href="#notes"><i class="fa-solid fa-note-sticky"></i> یادداشت‌های انتقال</a>
+
     <a class="nav-link" href="#settlement"><i class="fa-solid fa-box-archive"></i> تسویه و آرشیو</a>
+
     <div class="nav-label">کنترل و نگهداری</div>
+
     <a class="nav-link" href="#currency"><i class="fa-solid fa-coins"></i> مبلغ و واحد پولی</a>
+
     <a class="nav-link" href="#logs"><i class="fa-solid fa-clock-rotate-left"></i> گزارش‌ها و لاگ‌ها</a>
+
     <a class="nav-link" href="#roles"><i class="fa-solid fa-user-shield"></i> نقش‌ها و دسترسی</a>
+
     <a class="nav-link" href="#backup"><i class="fa-solid fa-database"></i> پشتیبان‌گیری</a>
+
     <a class="nav-link" href="#security"><i class="fa-solid fa-shield-halved"></i> امنیت و خطاهای رایج</a>
+
     <a class="nav-link" href="#faq"><i class="fa-solid fa-circle-question"></i> پرسش‌های متداول</a>
+
   </aside>
 
+
   <main id="content">
+
     <div class="crumb"><i class="fa-solid fa-book-open"></i> مستندات <i class="fa-solid fa-chevron-left sep" aria-hidden="true"></i> راهنمای استفاده</div>
+
     <div class="hero">
+
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span> راهنمای رسمی محصول</span>
+
       <h1>استفاده صحیح از پی‌را</h1>
-      <p>راهنمای فارسی و مرحله‌به‌مرحله برای ثبت و پیگیری بدهی‌ها، طلب‌ها و یادداشت‌های انتقال؛ با تمرکز بر دقت اطلاعات، کنترل عملیات و نگهداری امن داده‌ها.</p>
+
+      <p>راهنمای فارسی و مرحله‌به‌مرحله پی‌را بر پایه مستندات فعلی پروژه: تعهدهای مالی، تسویه زنجیره‌ای، یادداشت‌های انتقال، دفتر کل، دسترسی‌ها، پشتیبان‌گیری و عیب‌یابی.</p>
+
       <div class="hero-meta">
+
         <span><i class="fa-regular fa-clock"></i> مطالعه: حدود ۸ دقیقه</span>
+
         <span><i class="fa-solid fa-book"></i> راهنمای کاربری</span>
+
         <span><i class="fa-solid fa-align-right"></i> رابط راست‌چین (RTL)</span>
+
       </div>
+
     </div>
-    <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></div><div><strong>نکته مهم</strong>این مستند بر اساس قابلیت‌های شناخته‌شدهٔ پی‌را نوشته شده است. نام دقیق دکمه‌ها یا دسترسی‌ها ممکن است با نسخهٔ نصب‌شده تفاوت داشته باشد. ثبت یا آرشیو یک مورد به‌تنهایی به معنی انتقال واقعی وجه نیست.</div></div>
+
+    <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></div><div><strong>نکته مهم</strong>این راهنما بر اساس README و ساختار مستندشده نسخه فعلی مخزن PayRa تهیه شده است. پیش از اجرای عملیات حساس، نسخه نصب‌شده و مجوز حساب را بررسی کنید. یادداشت انتقال، آرشیو و حذف نرم به‌تنهایی به معنی جابه‌جایی وجه نیستند.</div></div>
+
+
+<section class="doc-section" id="setup" data-title="نصب و راه‌اندازی">
+      <div class="section-head"><div class="section-num">00</div><div><h2>نصب و راه‌اندازی</h2><p>دستورهای رسمی README برای راه‌اندازی یک نصب تازه.</p></div></div>
+      <ol>
+        <li>Python نسخه ۳.۱۱ یا بالاتر نصب کنید.</li>
+        <li>محیط مجازی بسازید و وابستگی‌ها را نصب کنید: <code>python -m venv venv</code>، سپس در PowerShell <code>.\venv\Scripts\Activate.ps1</code> و <code>pip install -r requirements.txt</code>.</li>
+        <li>فایل محیطی را بسازید: <code>Copy-Item .env.example .env</code>. مقدار <code>SECRET_KEY</code> را با مقدار تصادفی امن جایگزین کنید.</li>
+        <li>پیش از اولین اجرا، گذرواژه مدیر پیش‌فرض را از طریق <code>PAYRA_DEFAULT_ADMIN_PASSWORD</code> در فایل <code>.env</code> تغییر دهید.</li>
+        <li>پایگاه داده و داده‌های اولیه را با <code>python -m flask --app run init-db</code> ایجاد کنید.</li>
+        <li>سلامت نصب را با <code>python tools/smoke_test.py</code> بررسی کنید و سپس <code>python run.py</code> را اجرا کنید.</li>
+      </ol>
+      <div class="callout danger"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div><div><strong>حساب مدیر راه‌اندازی</strong>نام کاربری پیش‌فرض <code>admin</code> و گذرواژه مستندشده <code>admin123</code> است. این گذرواژه را فوراً تغییر دهید. تا قبل از تغییر آن، سرور دسترسی به سایر بخش‌ها را مسدود می‌کند؛ بهتر است مقدار محیطی را قبل از نخستین اجرا تنظیم کنید.</div></div>
+      <p>برای اجرای بررسی توازن دفتر کل: <code>python -m flask --app run check-ledger</code>. برای اجرای آزمون‌ها: <code>python -m pytest</code>، یا فقط آزمون‌های مالی با <code>python -m pytest -m financial</code> و آزمون‌های امنیتی با <code>python -m pytest -m security</code>.</p>
+    </section>
 
     <section class="doc-section" id="intro" data-title="معرفی پی‌را">
+
       <div class="section-head"><div class="section-num">01</div><div><h2>معرفی پی‌را</h2><p>پی‌را برای سامان‌دهی سوابق مالی و پیگیری تعهدات میان اشخاص طراحی شده است.</p></div></div>
+
       <p>با استفاده از پی‌را می‌توانید اطلاعات مربوط به بدهی‌ها و طلب‌ها را ثبت کنید، موارد انجام‌شده را بایگانی کنید و از گزارش‌ها و لاگ‌ها برای بررسی سابقهٔ عملیات کمک بگیرید. دقت داده‌های ورودی و ثبت منظم تغییرات، پایهٔ استفادهٔ قابل‌اعتماد از سیستم است.</p>
+
       <div class="grid-cards">
+
         <article class="mini-card"><div class="symbol"><i class="fa-solid fa-arrow-trend-up"></i></div><h3>بدهی‌ها</h3><p>ثبت و پیگیری مبالغی که باید پرداخت شوند.</p></article>
+
         <article class="mini-card"><div class="symbol"><i class="fa-solid fa-hand-holding-dollar"></i></div><h3>طلب‌ها</h3><p>ثبت مبالغی که انتظار دارید دریافت شوند.</p></article>
+
         <article class="mini-card"><div class="symbol"><i class="fa-solid fa-note-sticky"></i></div><h3>یادداشت‌ها</h3><p>یادآوری انتقال یا پرداخت؛ بدون تغییر مستقیم مانده‌های مالی.</p></article>
-        <article class="mini-card"><div class="symbol"><i class="fa-solid fa-clock-rotate-left"></i></div><h3>آرشیو و لاگ‌ها</h3><p>مرور موارد بایگانی‌شده و سابقهٔ عملیات ثبت‌شده.</p></article>
+
+        <article class="mini-card"><div class="symbol"><i class="fa-solid fa-clock-rotate-left"></i></div><h3>آرشیو و لاگ‌ها</h3><p>بایگانی قابل‌بازگردانی و گزارش رویدادهای فقط‌افزودنی.</p></article>
+
       </div>
+
     </section>
+
 
     <section class="doc-section" id="before" data-title="پیش از شروع">
+
       <div class="section-head"><div class="section-num">02</div><div><h2>پیش از شروع</h2><p>چند بررسی ساده، احتمال خطا در سوابق مالی را کاهش می‌دهد.</p></div></div>
+
       <ul>
+
         <li>مطمئن شوید وارد حساب کاربری درست شده‌اید و مجوز لازم برای عملیات موردنظر را دارید.</li>
+
         <li>نام طرف‌حساب را از فهرست اشخاص انتخاب کنید؛ از ساخت چند شخص با نام‌های تقریباً یکسان خودداری کنید.</li>
+
         <li>قبل از ثبت مبلغ، واحد پولی و تعداد رقم‌های واردشده را دوباره بررسی کنید.</li>
+
         <li>تاریخ ثبت را از تاریخ سررسید جدا در نظر بگیرید؛ این دو مفهوم یکسان نیستند.</li>
+
         <li>برای عملیات حساس مانند حذف یا آرشیو، ابتدا جزئیات مورد را بررسی کنید.</li>
+
       </ul>
+
       <div class="callout"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div><div><strong>قاعدهٔ طلایی</strong>اگر برای یک تراکنش سند، رسید یا یادداشت معتبری دارید، اطلاعات آن را هم‌زمان با ثبت مورد وارد کنید تا بعداً امکان تطبیق آسان‌تر باشد.</div></div>
+
     </section>
+
 
     <section class="doc-section" id="workflow" data-title="گردش کار پیشنهادی">
+
       <div class="section-head"><div class="section-num">03</div><div><h2>گردش کار پیشنهادی</h2><p>یک روند یکسان برای ثبت، بازبینی و بستن هر مورد داشته باشید.</p></div></div>
+
       <ol class="steps">
+
         <li><strong>طرف‌حساب را شناسایی کنید.</strong><br>نام شخص یا مجموعه را در فهرست اشخاص پیدا کنید و از درست بودن آن مطمئن شوید.</li>
+
         <li><strong>نوع مورد را انتخاب کنید.</strong><br>اگر مبلغی باید پرداخت شود، بخش بدهی‌ها را بررسی کنید؛ اگر قرار است مبلغی دریافت شود، از بخش طلب‌ها استفاده کنید.</li>
+
         <li><strong>اطلاعات را دقیق وارد کنید.</strong><br>مبلغ، واحد پولی، تاریخ‌ها و توضیحات را پیش از ذخیره مرور کنید.</li>
+
         <li><strong>مورد ذخیره‌شده را بازبینی کنید.</strong><br>جزئیات ثبت‌شده را باز کنید و با رسید یا توافق اصلی تطبیق دهید.</li>
+
         <li><strong>پس از تأیید نتیجه، وضعیت را به‌روز کنید.</strong><br>تسویه، آرشیو یا حذف را تنها زمانی انجام دهید که مفهوم و نتیجهٔ هر عملیات را می‌دانید.</li>
+
       </ol>
+
     </section>
+
 
     <section class="doc-section" id="people" data-title="اشخاص و طرف حساب ها">
+
       <div class="section-head"><div class="section-num">04</div><div><h2>اشخاص و طرف‌حساب‌ها</h2><p>فهرست اشخاص را به‌عنوان مرجع مشترک ثبت‌ها نگه دارید.</p></div></div>
+
       <ul>
+
         <li>نام کامل و قابل‌شناسایی وارد کنید؛ از نام‌های مبهم مانند «مشتری جدید» برای چند نفر استفاده نکنید.</li>
+
         <li>قبل از افزودن شخص جدید، جست‌وجو کنید تا رکورد تکراری ایجاد نشود.</li>
+
         <li>در صورت وجود فیلد توضیحات، اطلاعات کمکی غیرحساس مانند شناسهٔ داخلی یا روش تماس کاری را فقط در صورت نیاز وارد کنید.</li>
+
         <li>اگر نام شخص تغییر کرد، پیش از ویرایش بررسی کنید که تغییر نام باعث اشتباه در شناسایی سوابق نشود.</li>
+
       </ul>
+
       <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>حریم خصوصی</strong>اطلاعات ورود، شماره کارت کامل، رمزها یا داده‌های بسیار حساس را در فیلد توضیحات وارد نکنید.</div></div>
+
     </section>
+
 
     <section class="doc-section" id="debts" data-title="ثبت بدهی ها">
+
       <div class="section-head"><div class="section-num">05</div><div><h2>ثبت بدهی‌ها</h2><p>برای مبلغی که باید پرداخت شود، اطلاعات را در بخش بدهی‌ها ثبت کنید.</p></div></div>
+
       <ol>
+
         <li>بخش «بدهی‌ها» را باز کنید و گزینهٔ ایجاد مورد جدید را انتخاب کنید.</li>
+
         <li>طرف‌حساب مربوط را از فهرست اشخاص انتخاب کنید.</li>
+
         <li>مبلغ و واحد پولی را وارد کنید؛ واحد پولی را از روی سند یا توافق اصلی تعیین کنید.</li>
+
         <li>تاریخ ثبت را به‌عنوان زمان ثبت در سیستم و تاریخ سررسید را به‌عنوان موعد مورد انتظار وارد کنید.</li>
+
         <li>در صورت نیاز، توضیح کوتاه و قابل‌فهم اضافه کنید؛ سپس اطلاعات را مرور و ذخیره کنید.</li>
+
         <li>پس از ذخیره، جزئیات مورد را باز کنید و درستی اطلاعات را تأیید کنید.</li>
+
       </ol>
+
       <h3>چه زمانی بدهی را تسویه‌شده در نظر بگیریم؟</h3>
+
       <p>تنها پس از تأیید پرداخت واقعی و تطبیق مبلغ و طرف‌حساب، عملیات تسویه را انجام دهید. اگر پرداخت بخشی از مبلغ است، قبل از استفاده از تسویه بررسی کنید که نسخهٔ نصب‌شده از تسویهٔ جزئی پشتیبانی می‌کند یا خیر؛ این راهنما وجود چنین قابلیتی را فرض نمی‌کند.</p>
+
     </section>
+
 
     <section class="doc-section" id="credits" data-title="ثبت طلب ها">
+
       <div class="section-head"><div class="section-num">06</div><div><h2>ثبت طلب‌ها</h2><p>برای مبلغی که باید دریافت شود، از بخش طلب‌ها استفاده کنید.</p></div></div>
+
       <ol>
+
         <li>وارد بخش «طلب‌ها» شوید و ایجاد مورد جدید را انتخاب کنید.</li>
+
         <li>شخصی را که باید مبلغ را پرداخت کند انتخاب کنید.</li>
+
         <li>مبلغ و ارز را مطابق توافق ثبت کنید.</li>
+
         <li>تاریخ ثبت، سررسید و توضیحات لازم را وارد کنید.</li>
+
         <li>مورد را ذخیره و جزئیات آن را بررسی کنید.</li>
+
         <li>بعد از دریافت و تأیید وجه، وضعیت مورد را طبق امکانات نسخهٔ خود به‌روز کنید.</li>
+
       </ol>
+
       <div class="callout"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div><div><strong>ثبت دریافت واقعی</strong>یادداشت یا وعدهٔ پرداخت را با دریافت قطعی وجه اشتباه نگیرید. برای وعده یا هماهنگی انتقال، از یادداشت‌ها استفاده کنید؛ برای طلب واقعی، از بخش طلب‌ها.</div></div>
+
     </section>
+
 
     <section class="doc-section" id="notes" data-title="یادداشت های انتقال">
-      <div class="section-head"><div class="section-num">07</div><div><h2>یادداشت‌های انتقال</h2><p>یادآوری و پیگیری انتقال‌ها بدون تغییر مستقیم مانده‌های بدهی و طلب.</p></div></div>
-      <p>یادداشت‌ها برای ثبت هماهنگی، یادآوری یا جزئیات انتقالی است که لازم است پیگیری شود. ایجاد یا ویرایش یک یادداشت نباید به‌عنوان ثبت یک بدهی یا طلب جدید تعبیر شود.</p>
-      <h3>ساخت یادداشت</h3>
-      <ol>
-        <li>بخش «یادداشت‌ها» را باز کرده و ایجاد یادداشت را انتخاب کنید.</li>
-        <li>طلبکار و بدهکار را از گزینه‌های فهرست اشخاص انتخاب کنید.</li>
-        <li>مبلغ و واحد پولی را مشخص کنید؛ اگر واحدی انتخاب نشده است، مقدار پیش‌فرض رابط را بررسی کنید.</li>
-        <li>تاریخ ثبت و تاریخ سررسید را کنترل کنید؛ تاریخ پیش‌فرض را در صورت نیاز اصلاح کنید.</li>
-        <li>در صورت نیاز توضیحی کوتاه اضافه و یادداشت را ذخیره کنید.</li>
-      </ol>
-      <h3>عملیات روی یادداشت</h3>
-      <div class="table-wrap"><table><thead><tr><th>عملیات</th><th>کاربرد</th><th>نکته</th></tr></thead><tbody>
-        <tr><td><span class="pill">جزئیات</span></td><td>مشاهدهٔ اطلاعات کامل یادداشت</td><td>برای بازبینی قبل از هر تغییر</td></tr>
-        <tr><td><span class="pill">ویرایش</span></td><td>اصلاح اطلاعات یادداشت</td><td>پس از تغییر، اطلاعات را دوباره کنترل کنید</td></tr>
-        <tr><td><span class="pill red">حذف</span></td><td>حذف یادداشت اشتباه یا غیرضروری</td><td>قبل از تأیید، مطمئن شوید مورد درست را انتخاب کرده‌اید</td></tr>
-        <tr><td><span class="pill">تسویه‌شده</span></td><td>علامت‌گذاری یادداشت به‌عنوان انجام‌شده، در صورت پشتیبانی نسخه</td><td>این وضعیت به‌تنهایی مدرک انتقال وجه نیست</td></tr>
+<div class="section-head"><div class="section-num">07</div><div><h2>یادداشت‌های انتقال</h2><p>ثبت اطلاعاتی انتقال مورد انتظار، کاملاً جدا از دفتر کل مالی.</p></div></div>
+      <p>یادداشت مشخص می‌کند چه کسی، به چه کسی، چه مبلغی و در چه تاریخی باید انتقالی را انجام دهد. یادداشت به‌خودی‌خود پرداخت، دریافت یا تسویه مالی نیست.</p>
+      <div class="table-wrap"><table><thead><tr><th>فیلد</th><th>رفتار تأییدشده</th></tr></thead><tbody>
+        <tr><td>بدهکار (مبدأ) و طلبکار (مقصد)</td><td>هر دو از فهرست اشخاص انتخاب می‌شوند؛ متن آزاد پذیرفته نیست و شناسه نامعتبر رد می‌شود.</td></tr>
+        <tr><td>مبلغ</td><td>عدد صحیح در کوچک‌ترین واحد پول؛ صفر، منفی و اعشار بیش از حد مجاز پذیرفته نمی‌شود.</td></tr>
+        <tr><td>واحد پولی</td><td>از فهرست ارزهای سامانه؛ پیش‌فرض ریال (IRR). تبدیل خودکار وجود ندارد.</td></tr>
+        <tr><td>تاریخ ثبت و سررسید</td><td>تقویم شمسی؛ هر دو به‌صورت پیش‌فرض روی امروز هستند.</td></tr>
+        <tr><td>وضعیت</td><td>«در انتظار» یا «تسویه شده». وضعیت انتخابی است و محاسبه مالی نیست.</td></tr>
+        <tr><td>توضیحات</td><td>اختیاری، حداکثر ۲۰۰۰ نویسه.</td></tr>
       </tbody></table></div>
-      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>یادداشت با تراکنش فرق دارد</strong>یادداشت انتقال را برای پیگیری به کار ببرید. برای ثبت رسمی بدهی یا طلب، بخش متناظر را استفاده کنید. پس از انتقال واقعی، رسید را جداگانه بررسی و وضعیت را مطابق رویهٔ کاری خود به‌روز کنید.</div></div>
+      <h3>عملیات و جهت انتقال</h3>
+      <p>عملیات «جزئیات»، «ویرایش»، «حذف» (با تأیید) و «تسویه شده» در فهرست کشویی همان سطر قرار دارند. در فرم، جمله‌ای زنده مانند «الف باید به ب بپردازد» جهت انتقال را پیش از ثبت روشن می‌کند؛ این جمله صرفاً نمایشی است و محاسبه مالی انجام نمی‌دهد.</p>
+      <p>وضعیت در فرم ویرایش فقط خواندنی است. علامت‌گذاری به‌عنوان «تسویه شده» از فهرست یا صفحه جزئیات انجام می‌شود.</p>
+      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>جداسازی قطعی از امور مالی</strong>ایجاد، ویرایش، تسویه‌شده‌کردن یا حذف یادداشت نباید مانده اشخاص، تعهدها، تسویه‌های مالی، گزارش‌های مالی یا آرشیو تعهدها را تغییر دهد. این عملیات فقط همان یادداشت و رویداد متناظر آن را تغییر می‌دهد.</div></div>
+      <p>دسترسی‌های یادداشت شامل <code>notes.view</code>، <code>notes.create</code>، <code>notes.edit</code>، <code>notes.delete</code> و <code>notes.settle</code> هستند. رویدادهای <code>CREATE_NOTE</code>، <code>UPDATE_NOTE</code>، <code>DELETE_NOTE</code> و <code>SETTLE_NOTE</code> در گزارش رویدادها ثبت می‌شوند.</p>
     </section>
+
 
     <section class="doc-section" id="settlement" data-title="تسویه و آرشیو">
-      <div class="section-head"><div class="section-num">08</div><div><h2>تسویه، آرشیو و حذف</h2><p>این عملیات یکسان نیستند و نباید به‌جای هم استفاده شوند.</p></div></div>
-      <div class="table-wrap"><table><thead><tr><th>عملیات</th><th>مفهوم</th><th>چه زمانی؟</th></tr></thead><tbody>
-        <tr><td><strong>جزئیات</strong></td><td>مشاهدهٔ اطلاعات رکورد</td><td>برای بررسی پیش از تصمیم‌گیری</td></tr>
-        <tr><td><strong>تسویه</strong></td><td>اعلام انجام تعهد مطابق گردش کار سیستم</td><td>پس از تأیید پرداخت یا دریافت واقعی</td></tr>
-        <tr><td><strong>آرشیو</strong></td><td>خارج کردن مورد از فهرست فعال، در صورت پشتیبانی نسخه</td><td>وقتی دیگر نیازی به نمایش در فهرست فعال نیست</td></tr>
-        <tr><td><strong>ویرایش</strong></td><td>اصلاح داده‌های رکورد</td><td>برای تصحیح خطا با حفظ سازگاری سوابق</td></tr>
-        <tr><td><strong>حذف</strong></td><td>حذف رکورد؛ امکان بازیابی به پیاده‌سازی بستگی دارد</td><td>فقط پس از اطمینان کامل و بررسی سیاست نگهداری</td></tr>
+<div class="section-head"><div class="section-num">08</div><div><h2>تسویه، زنجیره و آرشیو</h2><p>تسویه عملیات مالی است؛ آرشیو و حذف رفتارهای جداگانه‌اند.</p></div></div>
+      <h3>تسویه جزئی و کامل</h3>
+      <p>هر تعهد دو مقدار اصلی دارد: مبلغ اولیه که پس از ایجاد تغییر نمی‌کند و مانده جاری. مبلغ تسویه‌شده جداگانه ذخیره نمی‌شود و از تفاضل مبلغ اولیه و مانده محاسبه می‌شود. وضعیت‌های فعال، پرداخت جزئی، تسویه‌شده و سررسیدشده نیز از داده‌ها محاسبه می‌شوند.</p>
+      <ul><li>مبلغ تسویه باید بزرگ‌تر از صفر باشد.</li><li>مانده هیچ‌گاه نباید منفی یا بیشتر از مبلغ اولیه شود.</li><li>تسویه بیش از مانده یا تسویه با ارز متفاوت رد می‌شود.</li><li>کلید یکتایی از اعمال دوباره یک درخواست جلوگیری می‌کند؛ نسخه رکورد نیز تغییر همزمان را تشخیص می‌دهد.</li></ul>
+      <h3>تسویه زنجیره‌ای</h3>
+      <p>تسویه زنجیره‌ای امکان انتقال متوازن ارزش از پرداخت‌کننده به دریافت‌کننده از مسیر یک یا چند تعهد پیوسته را فراهم می‌کند. بدهکار و طلبکار تعهدهای متوالی باید به‌درستی به هم متصل باشند؛ همه پایه‌ها باید ارز یکسان و مانده کافی داشته باشند.</p>
+      <div class="callout"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-scale-balanced"></i></div><div><strong>موقعیت واسطه تغییر نمی‌کند</strong>برای مثال، اگر «سعید → من» و «من → شاهین» هر دو ۳۰۰ باشند، تسویه مستقیم «سعید → شاهین» هر دو تعهد را صفر می‌کند و موقعیت «من» را تغییر نمی‌دهد؛ درآمد یا پرداخت جعلی ساخته نمی‌شود.</div></div>
+      <p>در عملیات چندپایه، سامانه ابتدا همه پایه‌ها را اعتبارسنجی می‌کند و سپس تغییرات را با خواندن تازه مانده‌ها ثبت می‌کند تا تخصیص‌های متوالی روی یک تعهد در تاریخچه گم نشوند.</p>
+      <h3>ابطال تسویه</h3>
+      <p>ابطال، تخصیص را دقیقاً برمی‌گرداند. اگر چند تسویه روی یک تعهد انجام شده باشد، ابطال باید به ترتیب آخرین‌تسویه‌اول (LIFO) انجام شود؛ ابطال قدیمی‌تر پیش از برگرداندن تسویه جدیدتر رد می‌شود تا دوباره‌شماری رخ ندهد.</p>
+      <h3>آرشیو و حذف</h3>
+      <div class="table-wrap"><table><thead><tr><th>عملیات</th><th>رفتار</th><th>محدودیت</th></tr></thead><tbody>
+        <tr><td>آرشیو</td><td>بایگانی بدون تغییر مبلغ یا مانده</td><td>هر عملیات دارای <code>batch_id</code> است و بازگردانی همان دسته امکان‌پذیر است.</td></tr>
+        <tr><td>حذف نرم</td><td>رفتار پیش‌فرض حذف؛ رکورد و مبالغ حفظ می‌شوند.</td><td>با حذف قطعی اشتباه نشود.</td></tr>
+        <tr><td>حذف قطعی</td><td>حذف غیرقابل‌بازگشت رکورد</td><td>فقط مدیر ارشد، با وارد کردن شناسه و فقط برای تعهدی که هیچ تسویه‌ای ندارد. تعهد دارای سابقه تسویه حفظ می‌شود.</td></tr>
       </tbody></table></div>
-      <p>اگر موردی فقط دیگر فعال نیست، آرشیو معمولاً انتخاب محتاطانه‌تری از حذف است؛ اما رفتار دقیق آرشیو و حذف به پیاده‌سازی برنامه بستگی دارد. قبل از عملیات گروهی، از داده‌ها نسخهٔ پشتیبان بگیرید.</p>
     </section>
+
 
     <section class="doc-section" id="currency" data-title="مبلغ و واحد پولی">
-      <div class="section-head"><div class="section-num">09</div><div><h2>مبلغ و واحد پولی</h2><p>ثبت دقیق مبلغ، مهم‌ترین بخش جلوگیری از اختلاف حساب است.</p></div></div>
+<div class="section-head"><div class="section-num">09</div><div><h2>مبلغ و واحد پولی</h2><p>دقت مالی بر نمایش و راحتی مقدم است.</p></div></div>
       <ul>
-        <li>مبلغ را با واحد پولی درست وارد کنید؛ ریال و تومان را به‌جای هم به کار نبرید.</li>
-        <li>برای مبالغ ارزی، ارز هر رکورد را مشخص نگه دارید و بدون تبدیل روشن، ارقام ارزهای مختلف را جمع نکنید.</li>
-        <li>اگر مبلغی را از سند کپی می‌کنید، جداکننده‌ها، صفرهای ابتدا یا انتها و تعداد رقم‌ها را بررسی کنید.</li>
-        <li>در توضیحات، اگر لازم است مبلغ به تومان یا ریال معادل‌سازی شده، روش تبدیل و مبنای آن را شفاف بنویسید.</li>
+        <li>مبالغ به‌صورت عدد صحیح در کوچک‌ترین واحد پولی ذخیره می‌شوند؛ از <code>float</code> در مسیر مالی استفاده نمی‌شود.</li>
+        <li>ریال و تومان بدون اعشار ذخیره می‌شوند؛ دلار، یورو، درهم و پوند با دو رقم اعشارِ واحد کوچک (سنت) نمایش/ذخیره می‌شوند.</li>
+        <li>تبدیل ارزی خودکار وجود ندارد. نمایش ریال به تومان تنها تبدیل دقیق ۱۰ به ۱ است و فقط نمایش را تغییر می‌دهد، نه مقدار ذخیره‌شده.</li>
+        <li>جمع‌ها همیشه به تفکیک ارز گزارش می‌شوند؛ جمع ساده ریال و دلار معنی مالی ندارد.</li>
+        <li>تفاوت ارز در یک تسویه رد می‌شود. برای مقایسه ارزها، نرخ و تاریخ تبدیل را جداگانه مشخص کنید.</li>
       </ul>
-      <div class="table-wrap"><table><thead><tr><th>واحد</th><th>دقت معمول نمایشی</th><th>یادآوری</th></tr></thead><tbody>
-        <tr><td>ریال (IRR)</td><td>بدون بخش اعشاری</td><td>مقدار ورودی را با سند تطبیق دهید</td></tr>
-        <tr><td>تومان</td><td>بدون بخش اعشاری</td><td>با ریال اشتباه نشود؛ ۱ تومان برابر ۱۰ ریال است</td></tr>
-        <tr><td>USD / EUR / AED / GBP</td><td>معمولاً دو رقم اعشار</td><td>نمایش و گردکردن دقیق را در نسخهٔ نصب‌شده بررسی کنید</td></tr>
-      </tbody></table></div>
-      <div class="callout danger"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>از تبدیل خودکار فرضی پرهیز کنید</strong>این مستند نرخ ارز یا تبدیل خودکار میان ارزها را فرض نمی‌کند. برای مقایسهٔ ارزهای مختلف، نرخ و تاریخ تبدیل را به‌صورت جداگانه ثبت کنید.</div></div>
+      <div class="callout danger"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>عدد ذخیره‌شده را با نمایش اشتباه نگیرید</strong>ریال به تومان فقط برای نمایش تبدیل می‌شود. هیچ نرخ تبدیل خودکاری برای ارزهای دیگر فرض نکنید و مبلغ را با سند اصلی تطبیق دهید.</div></div>
     </section>
+
 
     <section class="doc-section" id="logs" data-title="گزارش ها و لاگ ها">
-      <div class="section-head"><div class="section-num">10</div><div><h2>گزارش‌ها و لاگ‌ها</h2><p>از گزارش برای جمع‌بندی و از لاگ برای بررسی رخدادها کمک بگیرید.</p></div></div>
+<div class="section-head"><div class="section-num">10</div><div><h2>گزارش‌ها، دفتر کل و لاگ‌ها</h2><p>گزارش برای جمع‌بندی و لاگ برای بررسی رخدادهاست.</p></div></div>
       <ul>
-        <li>گزارش‌ها را برای مرور وضعیت کلی و پیدا کردن موارد نیازمند پیگیری به کار ببرید.</li>
-        <li>لاگ‌ها می‌توانند برای بررسی رویدادهای ثبت‌شده مفید باشند؛ میزان جزئیات آن‌ها به نسخهٔ سیستم بستگی دارد.</li>
-        <li>در صورت مشاهدهٔ تغییر غیرمنتظره، زمان تقریبی، نوع رکورد و شناسهٔ آن را یادداشت کنید و سپس لاگ‌های مرتبط را بررسی کنید.</li>
-        <li>گزارش را با منبع اصلی یا رسیدهای معتبر تطبیق دهید؛ گزارش نرم‌افزار جایگزین کنترل حسابداری نیست.</li>
+        <li>گزارش‌ها و خروجی‌ها را به تفکیک ارز بررسی کنید و با اسناد اصلی تطبیق دهید.</li>
+        <li>گزارش رویدادها زمان، کاربر، نوع عملیات، شناسه موجودیت، خلاصه فارسی، IP و جزئیات ساختاریافته را برای عملیات مهم ثبت می‌کند.</li>
+        <li>گزارش رویدادها فقط‌افزودنی است؛ مسیر ویرایش یا حذف رویداد وجود ندارد.</li>
+        <li>رویداد و تغییر مالی در یک تراکنش ثبت می‌شوند تا سابقه از تغییر مالی جدا نماند.</li>
+        <li>برای بررسی توازن دفتر کل، دستور <code>python -m flask --app run check-ledger</code> را اجرا کنید؛ در صورت عدم توازن، کد خروجی غیرصفر می‌دهد.</li>
+        <li>خروجی‌های Excel و PDF در سامانه وجود دارند و تابع سطح دسترسی و سقف سطرها هستند.</li>
       </ul>
-      <div class="callout"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></div><div><strong>گزارش با سند مالی یکسان نیست</strong>پیش از تصمیم مالی مهم، خروجی گزارش را با سوابق واقعی و مستندات مربوط تطبیق دهید.</div></div>
+      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-circle-info"></i></div><div><strong>گزارش جایگزین سند نیست</strong>پیش از تصمیم مالی مهم، خروجی را با رسیدها و سوابق معتبر تطبیق دهید.</div></div>
     </section>
+
 
     <section class="doc-section" id="roles" data-title="نقش ها و دسترسی">
-      <div class="section-head"><div class="section-num">11</div><div><h2>نقش‌ها و دسترسی</h2><p>دسترسی هر کاربر باید متناسب با مسئولیت او باشد.</p></div></div>
+<div class="section-head"><div class="section-num">11</div><div><h2>نقش‌ها و دسترسی</h2><p>مجوزها در سمت سرور بررسی می‌شوند.</p></div></div>
       <ul>
-        <li>حساب مشترک برای چند نفر نسازید؛ هر کاربر باید از حساب مجاز خودش استفاده کند.</li>
-        <li>دسترسی مدیریتی را فقط به افرادی بدهید که واقعاً به آن نیاز دارند.</li>
-        <li>قبل از اعطای دسترسی جدید، محدودهٔ مجاز کاربر را بررسی کنید.</li>
-        <li>اگر فردی دیگر به سیستم نیاز ندارد، دسترسی او را طبق سیاست سازمانی خود لغو کنید.</li>
+        <li>هر کاربر باید با حساب مجاز خودش کار کند؛ حساب مشترک نسازید.</li>
+        <li>هر مسیر عملیاتی در سرور مجوز لازم را بررسی می‌کند؛ پنهان بودن دکمه در رابط کاربری به‌تنهایی کنترل امنیتی نیست.</li>
+        <li>اصل کمترین اختیار را رعایت کنید. مجوزهای ویژه مدیر ارشد به مدیر عادی قابل اعطا نیستند.</li>
+        <li>دسترسی‌های ردشده نیز در گزارش رویدادها ثبت می‌شوند.</li>
+        <li>حذف قطعی تعهد فقط برای مدیر ارشد و با محدودیت‌های مشخص‌شده در بخش آرشیو و حذف مجاز است.</li>
       </ul>
-      <p>نام نقش‌ها و سطح دسترسی دقیق در این مستند به‌صورت قطعی تعریف نشده است؛ مرجع نهایی، تنظیمات و پیاده‌سازی نسخهٔ نصب‌شدهٔ شماست.</p>
     </section>
+
 
     <section class="doc-section" id="backup" data-title="پشتیبان گیری">
-      <div class="section-head"><div class="section-num">12</div><div><h2>پشتیبان‌گیری و بازیابی</h2><p>پشتیبان زمانی مفید است که سالم، به‌روز و قابل‌بازیابی باشد.</p></div></div>
+<div class="section-head"><div class="section-num">12</div><div><h2>پشتیبان‌گیری، پایگاه داده و بازیابی</h2><p>نسخه پشتیبان باید سازگار و قابل‌بازیابی باشد.</p></div></div>
       <ol>
-        <li>قبل از تغییرات مهم، به‌روزرسانی یا حذف داده‌ها نسخهٔ پشتیبان تهیه کنید.</li>
-        <li>فایل پشتیبان را در محل امنی جدا از محیط اصلی نگهداری کنید.</li>
-        <li>دسترسی به فایل پشتیبان را محدود کنید؛ ممکن است شامل اطلاعات مالی حساس باشد.</li>
-        <li>به‌صورت دوره‌ای فرایند بازیابی را در محیط آزمایشی بررسی کنید.</li>
-        <li>تاریخ تهیه و نسخهٔ مربوط را ثبت کنید تا در زمان نیاز قابل‌شناسایی باشد.</li>
+        <li>پیش از به‌روزرسانی یا تغییر مهم، نسخه پشتیبان سازگار تهیه کنید.</li>
+        <li>در نصب پیش‌فرض SQLite، فایل پایگاه داده در <code>instance/payra.db</code> قرار دارد.</li>
+        <li>برای پشتیبان SQLite از <code>VACUUM INTO</code> استفاده کنید یا ابتدا نوشتن در پایگاه داده را متوقف کنید؛ کپی ساده هنگام نوشتن ممکن است سازگار نباشد.</li>
+        <li>فایل پشتیبان را جدا از محیط اصلی و در محل امن نگه دارید و دسترسی آن را محدود کنید.</li>
+        <li>بازیابی را دوره‌ای در محیط آزمایشی امتحان کنید.</li>
       </ol>
-      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>صرفاً وجود فایل کافی نیست</strong>تا زمانی که بازیابی پشتیبان آزمایش نشده باشد، نمی‌توان از سالم بودن آن مطمئن بود. مراحل دقیق به شیوهٔ استقرار و پایگاه دادهٔ برنامه بستگی دارد.</div></div>
+      <h3>راه‌اندازی پایگاه داده در نصب تازه</h3>
+      <p>پس از نصب وابستگی‌ها و تنظیم فایل محیطی، دستور رسمی ساخت پایگاه داده و داده‌های اولیه این است:</p>
+      <p><code>python -m flask --app run init-db</code></p>
+      <p>این دستور جدول‌ها، ارزها و تنظیمات پیش‌فرض را می‌سازد، شخص «من» را ایجاد می‌کند و مدیر ارشد را با گذرواژه هش‌شده می‌سازد.</p>
+      <h3>بررسی ساختار و ارتقای پایگاه داده</h3>
+      <p>برای تشخیص وضعیت ساختار از <code>python -m flask --app run db-verify</code> و برای اعمال مهاجرت‌ها از <code>python -m flask --app run db upgrade</code> استفاده کنید. <code>create_all()</code> ستون‌های جدید را به جدول‌های موجود اضافه نمی‌کند.</p>
+      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>داده‌های موجود را حذف نکنید</strong>اجرای دوباره راه‌اندازی یا حذف فایل پایگاه داده می‌تواند اطلاعات را از بین ببرد. حذف و ساخت مجدد فقط وقتی مناسب است که داده‌ای برای حفظ‌کردن وجود ندارد.</div></div>
     </section>
 
+
     <section class="doc-section" id="security" data-title="امنیت و خطاهای رایج">
-      <div class="section-head"><div class="section-num">13</div><div><h2>امنیت و خطاهای رایج</h2><p>چک‌لیست کوتاه برای استفادهٔ روزمره و رفع خطا.</p></div></div>
+<div class="section-head"><div class="section-num">13</div><div><h2>امنیت و خطاهای رایج</h2><p>چک‌لیست عملی برای استفاده و عیب‌یابی.</p></div></div>
+      <h3>کنترل‌های امنیتی</h3>
+      <ul>
+        <li>گذرواژه‌ها با <code>scrypt</code> هش می‌شوند؛ متن خام گذرواژه ذخیره نمی‌شود.</li>
+        <li>درخواست‌های تغییردهنده با CSRF محافظت می‌شوند؛ نشست از کوکی‌های دارای تنظیمات امنیتی استفاده می‌کند.</li>
+        <li>پس از ۵ تلاش ناموفق، حساب قفل می‌شود؛ تلاش‌ها بر پایه IP نیز محدود می‌شوند.</li>
+        <li>در محیط عملیاتی، <code>SECRET_KEY</code> قوی و HTTPS همراه با <code>SESSION_COOKIE_SECURE=true</code> لازم است. پیکربندی عملیاتی با کلید پیش‌فرض اجرا نمی‌شود.</li>
+        <li>اسرار را در کد یا یادداشت‌های مالی ذخیره نکنید و اطلاعات واقعی را در تصاویر عمومی منتشر نکنید.</li>
+      </ul>
       <h3>خطاهای رایج</h3>
       <div class="table-wrap"><table><thead><tr><th>نشانه</th><th>بررسی پیشنهادی</th></tr></thead><tbody>
-        <tr><td>مبلغ نادرست به نظر می‌رسد</td><td>واحد پولی، صفرها، جداکننده‌ها و مبلغ سند اصلی را بررسی کنید.</td></tr>
-        <tr><td>شخص اشتباه انتخاب شده</td><td>نام طرف‌حساب و سوابق قبلی را بررسی کنید؛ قبل از اصلاح، رکورد صحیح را شناسایی کنید.</td></tr>
-        <tr><td>مورد در فهرست فعال نیست</td><td>فیلترها و بخش آرشیو را بررسی کنید؛ از حذف یا ثبت مجدد عجولانه خودداری کنید.</td></tr>
-        <tr><td>تغییر ذخیره نشده</td><td>پیام رابط، فیلدهای الزامی، اتصال و مجوز دسترسی را بررسی کنید؛ سپس از ثبت تکراری جلوگیری کنید.</td></tr>
-        <tr><td>گزارش با انتظار شما متفاوت است</td><td>بازهٔ تاریخ، وضعیت رکوردها، ارزها و معیارهای گزارش را کنترل کنید.</td></tr>
+        <tr><td>خطای ۵۰۰ در صفحه‌ها</td><td><code>python tools/smoke_test.py</code> را اجرا کنید تا علت نصب گزارش شود.</td></tr>
+        <tr><td><code>ModuleNotFoundError: tzdata</code></td><td><code>pip install tzdata</code>؛ این بسته برای رفتار دقیق منطقه زمانی در ویندوز لازم است.</td></tr>
+        <tr><td><code>no such column</code></td><td>ساختار پایگاه داده عقب است؛ ابتدا <code>db-verify</code> و سپس مهاجرت <code>db upgrade</code> را بررسی کنید.</td></tr>
+        <tr><td>خطای ۴۰۳</td><td>مجوز حساب را بررسی کنید؛ تلاش ردشده در گزارش رویدادها ثبت می‌شود.</td></tr>
+        <tr><td>ماندن در صفحه تغییر گذرواژه</td><td>گذرواژه راه‌اندازی هنوز تغییر نکرده است؛ این محدودیت در سمت سرور اعمال می‌شود.</td></tr>
       </tbody></table></div>
-      <h3>اصول امنیتی</h3>
+    </section>
+
+
+<section class="doc-section" id="quality" data-title="آزمون‌ها و استقرار">
+      <div class="section-head"><div class="section-num">14</div><div><h2>آزمون‌ها و استقرار</h2><p>پیش از انتشار، رفتار مالی و امنیتی را آزمایش کنید.</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>دستور</th><th>کاربرد</th></tr></thead><tbody>
+        <tr><td><code>python -m pytest</code></td><td>اجرای همه آزمون‌ها</td></tr>
+        <tr><td><code>python -m pytest -m financial</code></td><td>آزمون‌های دقت مالی</td></tr>
+        <tr><td><code>python -m pytest -m security</code></td><td>آزمون‌های امنیتی</td></tr>
+        <tr><td><code>python tools/smoke_test.py</code></td><td>بررسی سلامت نصب و صفحه‌ها</td></tr>
+        <tr><td><code>python -m flask --app run check-ledger</code></td><td>اعتبارسنجی اتحادهای دفتر کل</td></tr>
+      </tbody></table></div>
+      <p>آزمون‌های پروژه حوزه‌های محاسبات، تعهدها، تسویه جزئی و کامل، تسویه زنجیره‌ای، ناورداهای مالی، آرشیو و حذف، اشخاص، یادداشت‌ها، احراز هویت، مجوزها، تنظیمات، خروجی‌ها و بارگذاری صفحه‌ها را پوشش می‌دهند.</p>
+      <h3>استقرار عملیاتی</h3>
       <ul>
-        <li>رمز عبور قوی و منحصربه‌فرد استفاده کنید و آن را در یادداشت‌های مالی ذخیره نکنید.</li>
-        <li>سیستم و وابستگی‌های آن را به‌روز نگه دارید و دسترسی محیط استقرار را محدود کنید.</li>
-        <li>اطلاعات واقعی مشتریان را در محیط آزمایشی یا اسکرین‌شات‌های عمومی منتشر نکنید.</li>
-        <li>برای گزارش مشکل، رمز عبور، کلید مخفی یا داده‌های شناسایی‌کننده را ارسال نکنید.</li>
+        <li>روی ویندوز می‌توان از Waitress استفاده کرد؛ روی لینوکس، Gunicorn.</li>
+        <li>در محیط عملیاتی کلید محرمانه قوی، HTTPS و کوکی امن نشست را تنظیم کنید.</li>
+        <li>برای PostgreSQL، مقدار <code>DATABASE_URL</code> را تنظیم کنید؛ لایه دسترسی داده از ORM استفاده می‌کند.</li>
+        <li>پیش از استقرار، <code>check-ledger</code> را به‌عنوان دروازه سلامت اجرا کنید و سیاست‌های زمان نشست و بازگردانی آرشیو را تنظیم کنید.</li>
       </ul>
     </section>
 
     <section class="doc-section" id="faq" data-title="پرسش های متداول">
-      <div class="section-head"><div class="section-num">14</div><div><h2>پرسش‌های متداول</h2><p>پاسخ‌های سریع به چند سؤال مهم.</p></div></div>
+
+      <div class="section-head"><div class="section-num">15</div><div><h2>پرسش‌های متداول</h2><p>پاسخ‌های سریع به چند سؤال مهم.</p></div></div>
+
       <div class="faq">
+
         <details><summary>آیا یادداشت انتقال، بدهی یا طلب را تغییر می‌دهد؟</summary><p>خیر؛ یادداشت برای پیگیری است و نباید جایگزین ثبت در بخش بدهی‌ها یا طلب‌ها شود.</p></details>
+
         <details><summary>آیا آرشیو کردن یعنی تسویه شدن؟</summary><p>نه لزوماً. آرشیو معمولاً برای خارج کردن مورد از فهرست فعال است؛ تسویه مفهوم جداگانه‌ای دارد. رفتار دقیق به نسخهٔ نصب‌شده بستگی دارد.</p></details>
+
         <details><summary>اگر مبلغ را اشتباه وارد کردم چه کنم؟</summary><p>ابتدا رکورد و سند اصلی را شناسایی کنید. سپس از عملیات ویرایش مجاز استفاده کنید و پس از ذخیره، جزئیات را دوباره با سند تطبیق دهید. اگر مورد قبلاً تسویه شده است، پیش از اصلاح اثر تغییر را بررسی کنید.</p></details>
+
         <details><summary>آیا می‌توان ارزهای مختلف را مستقیم با هم جمع کرد؟</summary><p>خیر، جمع سادهٔ مبالغ ارزهای متفاوت معنی مالی یکسانی ندارد. برای مقایسه باید نرخ تبدیل، تاریخ و مبنای محاسبه مشخص باشد.</p></details>
+
         <details><summary>آیا می‌توان رکورد حذف‌شده را بازیابی کرد؟</summary><p>این موضوع به پیاده‌سازی و وجود پشتیبان یا سازوکار بازیابی بستگی دارد. حذف را برگشت‌پذیر فرض نکنید.</p></details>
+
         <details><summary>اگر موردی در فهرست پیدا نمی‌شود چه کنم؟</summary><p>عبارت جست‌وجو، فیلترها، بازهٔ تاریخ و بخش آرشیو را بررسی کنید. قبل از ثبت دوباره، مطمئن شوید رکورد مشابهی وجود ندارد.</p></details>
+
       </div>
+
     </section>
 
+
     <div class="no-results" id="noResults">بخشی مطابق جست‌وجوی شما پیدا نشد. عبارت دیگری امتحان کنید.</div>
+
     <footer class="footer"><span>این راهنما برای استفادهٔ دقیق‌تر و امن‌تر از پی‌را تهیه شده است.</span><strong>MTA · Copyright &copy; 2026 PAYRA. All rights reserved. · PayRa Documentation</strong></footer>
+
   </main>
+
 </div>
+
+<button class="to-top" id="toTop" aria-label="بازگشت به بالای صفحه" title="بالای صفحه"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
+
 (() => {
+
   const root = document.documentElement;
+
   const themeBtn = document.getElementById('themeBtn');
+
   const themeIcon = document.getElementById('themeIcon');
+
   const themeLabel = document.querySelector('.theme-label');
+
   const searchInput = document.getElementById('searchInput');
+
   const resultsBox = document.getElementById('searchResults');
+
   const sections = [...document.querySelectorAll('main section.doc-section')];
+
   const navLinks = [...document.querySelectorAll('.nav-link')];
+
   const noResults = document.getElementById('noResults');
+
   const content = document.getElementById('content');
+
   const sidebar = document.getElementById('sidebar');
 
+
   function setTheme(theme) {
+
     root.dataset.theme = theme;
+
     const light = theme === 'light';
+
     themeIcon.className = 'fa-solid ' + (light ? 'fa-moon' : 'fa-sun');
+
     themeLabel.textContent = light ? 'تیره' : 'روشن';
+
     themeBtn.setAttribute('aria-label', light ? 'فعال کردن پوسته تیره' : 'فعال کردن پوسته روشن');
+
     document.querySelector('meta[name="theme-color"]').content = light ? '#f5f6f3' : '#111412';
+
     try { localStorage.setItem('payra-docs-theme', theme); } catch (_) {}
+
   }
+
   let saved = 'dark';
+
   try { saved = localStorage.getItem('payra-docs-theme') || 'dark'; } catch (_) {}
+
   setTheme(saved);
+
   themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
 
+
   document.getElementById('menuBtn').addEventListener('click', () => sidebar.classList.toggle('open'));
+
   document.getElementById('overlay').addEventListener('click', () => sidebar.classList.remove('open'));
+
   new MutationObserver(() => document.body.classList.toggle('menu-open', sidebar.classList.contains('open'))).observe(sidebar, {attributes:true, attributeFilter:['class']});
+
   navLinks.forEach(link => link.addEventListener('click', () => {
+
     navLinks.forEach(item => item.classList.remove('active'));
+
     link.classList.add('active');
+
     sidebar.classList.remove('open');
+
   }));
 
+
   function normalize(s) {
+
     return s.toLocaleLowerCase('fa').replace(/[يى]/g,'ی').replace(/ك/g,'ک').replace(/[\u064B-\u065F\u0670]/g,'').trim();
+
   }
+
   function hideResults() { resultsBox.classList.remove('show'); }
+
   function search(query) {
+
     const q = normalize(query);
+
     resultsBox.innerHTML = '';
+
     if (!q) { hideResults(); return; }
+
     const matches = sections.map(sec => ({
+
       id: sec.id,
+
       title: sec.dataset.title || sec.querySelector('h2')?.textContent || '',
+
       text: normalize(sec.innerText)
+
     })).filter(item => normalize(item.title + ' ' + item.text).includes(q)).slice(0, 8);
+
     if (!matches.length) {
+
       resultsBox.innerHTML = '<div class="empty">نتیجه‌ای پیدا نشد.</div>';
+
     } else {
+
       matches.forEach(item => {
+
         const a = document.createElement('a');
+
         a.className = 'result-item';
+
         a.href = '#' + item.id;
+
         const strong = document.createElement('strong');
+
         strong.textContent = item.title;
+
         const small = document.createElement('small');
+
         const sec = document.getElementById(item.id);
+
         small.textContent = (sec?.innerText || '').replace(/\s+/g,' ').slice(0,95) + '…';
+
         a.append(strong, small);
+
         a.addEventListener('click', () => { hideResults(); searchInput.value = ''; sidebar.classList.remove('open'); });
+
         resultsBox.appendChild(a);
+
       });
+
     }
+
     resultsBox.classList.add('show');
+
   }
+
   searchInput.addEventListener('input', () => search(searchInput.value));
+
   searchInput.addEventListener('keydown', e => {
+
     if (e.key === 'Escape') { searchInput.value = ''; hideResults(); searchInput.blur(); }
+
     if (e.key === 'Enter') {
+
       const first = resultsBox.querySelector('a');
+
       if (first) first.click();
+
     }
+
   });
+
   document.addEventListener('click', e => {
+
     if (!resultsBox.contains(e.target) && !e.target.closest('.search')) hideResults();
+
   });
+
   document.addEventListener('keydown', e => {
+
     if (e.key === '/' && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+
       e.preventDefault(); searchInput.focus();
+
     }
+
   });
+
 
   const observer = new IntersectionObserver(entries => {
+
     entries.forEach(entry => {
+
       if (entry.isIntersecting) {
+
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+
         const cur = sidebar.querySelector('.nav-link.active');
+
         if (cur) sidebar.scrollTo({top: cur.offsetTop - sidebar.clientHeight / 2, behavior: 'smooth'});
+
       }
+
     });
+
   }, {rootMargin:'-20% 0px -70% 0px'});
+
   sections.forEach(section => observer.observe(section));
 
-  // Reading progress + back-to-top
+
+  // Reading progress + back-to-top*
+
   const bar = document.getElementById('progress');
+
   const toTop = document.getElementById('toTop');
+
   let ticking = false;
+
   function onScroll() {
+
     const max = document.documentElement.scrollHeight - innerHeight;
+
     bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(scrollY / max, 1) : 0) + ')';
+
     toTop.classList.toggle('show', scrollY > 600);
+
     ticking = false;
+
   }
+
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+
   onScroll();
+
   toTop.addEventListener('click', () => scrollTo({top:0, behavior:'smooth'}));
 
-  // Soft reveal for cards, callouts, tables and steps
+
+  // Soft reveal for cards, callouts, tables and steps*
+
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
     root.classList.add('js');
+
     const items = document.querySelectorAll('.mini-card, .callout, .table-wrap, .steps li, .faq details');
+
     const io = new IntersectionObserver(es => es.forEach(e => {
+
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+
     }), {rootMargin:'0px 0px -8% 0px'});
+
     items.forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = ((i % 4) * 60) + 'ms'; io.observe(el); });
+
   }
+
 })();
+
 </script>
+
 <button class="to-top" id="toTop" aria-label="بازگشت به بالای صفحه" title="بالای صفحه"><i class="fa-solid fa-arrow-up"></i></button>
+
 </body>
+
 </html>
