@@ -528,6 +528,10 @@
     <a class="nav-link" href="#security"><i class="fa-solid fa-shield-halved"></i> امنیت و خطاهای رایج</a>
 
     <a class="nav-link" href="#faq"><i class="fa-solid fa-circle-question"></i> پرسش‌های متداول</a>
+    <div class="nav-label">راهنمای تکمیلی</div>
+    <a class="nav-link" href="#installments"><i class="fa-solid fa-calendar-check"></i> اقساط</a>
+    <a class="nav-link" href="#preferences"><i class="fa-solid fa-sliders"></i> تنظیمات و رابط کاربری</a>
+    <a class="nav-link" href="#config"><i class="fa-solid fa-gears"></i> پیکربندی محیطی</a>
 
   </aside>
 
@@ -870,6 +874,80 @@
 
     </section>
 
+
+    <section class="doc-section" id="installments" data-title="اقساط">
+      <div class="section-head"><div class="section-num">16</div><div><h2>اقساط</h2><p>تقسیم یک مبلغ کل به پرداخت‌های زمان‌بندی‌شده، با حفظ تطابق جمع اقساط.</p></div></div>
+      <p>هر قسط سه مشخصه دارد: مبلغ، تاریخ پرداخت و وضعیت پرداخت. برنامهٔ اقساط از «پنجرهٔ اقساط» در همان صفحه مدیریت می‌شود و همهٔ قواعد زیر در سمت سرور نیز بررسی می‌شوند، نه فقط در رابط کاربری.</p>
+      <div class="table-wrap"><table><thead><tr><th>موضوع</th><th>رفتار</th></tr></thead><tbody>
+        <tr><td>جمع اقساط</td><td>باید با مبلغ کل مورد مرتبط هم‌خوان باشد؛ برنامه‌ای که جمع آن نمی‌خواند ذخیره نمی‌شود.</td></tr>
+        <tr><td>مبلغ هر قسط</td><td>مانند سایر مبالغ سامانه با ارز همان مورد و بدون اعشار اضافه ثبت می‌شود؛ مقدار منفی یا نامعتبر پذیرفته نمی‌شود.</td></tr>
+        <tr><td>تاریخ پرداخت</td><td>تاریخ قسط جدید طبق رفتار پیش‌فرض تاریخ‌ها در سامانه پر می‌شود؛ پیش از ذخیره، تاریخ هر قسط را بررسی کنید.</td></tr>
+        <tr><td>وضعیت پرداخت</td><td>علامت‌گذاری قسط به‌عنوان پرداخت‌شده ماندگار است و وضعیت‌ها و جمع‌های مرتبط را هماهنگ به‌روز می‌کند.</td></tr>
+        <tr><td>ویرایش یا حذف برنامه</td><td>جمع کل و قواعد وضعیت پرداخت حفظ می‌شود و سایر اطلاعات مورد (مبلغ کل، طرف‌حساب، توضیحات) دست‌نخورده می‌ماند.</td></tr>
+        <tr><td>تکرار</td><td>ثبت دوباره یک برنامه نباید قسط یا تراکنش تکراری بسازد.</td></tr>
+        <tr><td>دسترسی</td><td>ایجاد، ویرایش و حذف اقساط در سرور مجوز می‌خواهد؛ پنهان بودن دکمه در رابط کاربری کنترل امنیتی نیست.</td></tr>
+      </tbody></table></div>
+      <h3>توصیه‌های کاربردی</h3>
+      <ul>
+        <li>پیش از ذخیره، جمع اقساط را با مبلغ کل مقایسه کنید.</li>
+        <li>قسط را فقط پس از پرداخت یا دریافت واقعی وجه «پرداخت‌شده» علامت بزنید.</li>
+        <li>پیش از ویرایش برنامه‌ای که بخشی از اقساط آن پرداخت‌شده است، اثر تغییر بر جمع و وضعیت‌ها را بررسی کنید.</li>
+      </ul>
+      <div class="callout warning"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>قسط‌بندی مبلغ کل را تغییر نمی‌دهد</strong>تغییر برنامهٔ اقساط فقط زمان‌بندی را عوض می‌کند و نباید مبلغ کل را کم یا زیاد کند. برای اصلاح مبلغ کل، ابتدا خود مورد را ویرایش کنید و سپس برنامهٔ اقساط را با آن تطبیق دهید.</div></div>
+    </section>
+    <section class="doc-section" id="preferences" data-title="تنظیمات و رابط کاربری">
+      <div class="section-head"><div class="section-num">17</div><div><h2>تنظیمات و رابط کاربری</h2><p>مقادیر پیش‌فرض نمایش و رفتار رابط، و نکاتی برای استفاده راحت‌تر.</p></div></div>
+      <p>تنظیمات ذخیره‌شدهٔ کاربر بر مقادیر پیش‌فرض زیر اولویت دارند.</p>
+      <div class="table-wrap"><table><thead><tr><th>تنظیم</th><th>پیش‌فرض</th></tr></thead><tbody>
+        <tr><td>پوسته</td><td>همسان با تنظیم روشن/تیرهٔ دستگاه (<code>system</code>)</td></tr>
+        <tr><td>رنگ تأکید</td><td>کهربایی (<code>amber</code>)</td></tr>
+        <tr><td>تراکم جدول‌ها</td><td>راحت (<code>comfortable</code>)</td></tr>
+        <tr><td>نوار کناری</td><td>باز؛ وضعیت جمع‌شده ذخیره می‌شود.</td></tr>
+        <tr><td>مدت نمایش اعلان‌ها</td><td>۶ ثانیه</td></tr>
+        <tr><td>ارز پیش‌فرض</td><td>ریال (<code>IRR</code>)</td></tr>
+        <tr><td>تعداد ردیف در هر صفحه فهرست</td><td>۲۰</td></tr>
+        <tr><td>منطقه زمانی</td><td><code>Asia/Tehran</code></td></tr>
+      </tbody></table></div>
+      <h3>رفتار رابط کاربری</h3>
+      <ul>
+        <li>اعلان‌ها به‌صورت پیام‌های کوتاه در صفحه نمایش داده می‌شوند و برای فناوری‌های کمکی نیز اعلام می‌شوند.</li>
+        <li>عملیات حساس پیش از اجرا پنجرهٔ تأیید دارند.</li>
+        <li>پیوند «پرش به محتوای اصلی» برای کار با صفحه‌کلید در ابتدای هر صفحه وجود دارد.</li>
+        <li>در نمایشگرهای کوچک، نوار کناری به‌صورت کشو باز و بسته می‌شود.</li>
+        <li>صفحه‌های برنامه برای موتورهای جست‌وجو ایندکس‌نشدنی هستند، چون داده‌های مالی نباید منتشر یا در پراکسی مشترک ذخیره شوند.</li>
+      </ul>
+    </section>
+    <section class="doc-section" id="config" data-title="پیکربندی محیطی">
+      <div class="section-head"><div class="section-num">18</div><div><h2>پیکربندی محیطی</h2><p>متغیرهای فایل <code>.env</code> و مقدار پیش‌فرض هر کدام.</p></div></div>
+      <p>تنظیمات یک بار هنگام راه‌اندازی برنامه خوانده می‌شوند. متغیرهای واقعی محیط بر فایل <code>.env</code> اولویت دارند و تغییر آن‌ها پس از راه‌اندازی مجدد برنامه اعمال می‌شود.</p>
+      <div class="table-wrap"><table><thead><tr><th>متغیر</th><th>پیش‌فرض</th><th>کاربرد</th></tr></thead><tbody>
+        <tr><td><code>FLASK_ENV</code></td><td><code>development</code></td><td>انتخاب پیکربندی: <code>development</code>، <code>testing</code> یا <code>production</code>.</td></tr>
+        <tr><td><code>SECRET_KEY</code></td><td>—</td><td>در محیط عملیاتی الزامی است؛ مقدار خالی یا کلید پیش‌فرض مخزن باعث می‌شود برنامه راه‌اندازی نشود.</td></tr>
+        <tr><td><code>DATABASE_URL</code></td><td>SQLite در <code>instance/payra.db</code></td><td>نشانی پایگاه داده.</td></tr>
+        <tr><td><code>SESSION_LIFETIME_MINUTES</code></td><td>۱۲۰</td><td>مدت اعتبار نشست به دقیقه.</td></tr>
+        <tr><td><code>SESSION_REFRESH_EACH_REQUEST</code></td><td><code>true</code></td><td>تمدید نشست با هر درخواست.</td></tr>
+        <tr><td><code>SESSION_COOKIE_SECURE</code></td><td>توسعه: <code>false</code> · عملیاتی: <code>true</code></td><td>ارسال کوکی نشست فقط روی HTTPS.</td></tr>
+        <tr><td><code>SESSION_COOKIE_SAMESITE</code></td><td><code>Lax</code></td><td>سیاست SameSite کوکی نشست.</td></tr>
+        <tr><td><code>MAX_FAILED_LOGINS</code></td><td>۵</td><td>تعداد ورود ناموفق پیش از قفل شدن حساب.</td></tr>
+        <tr><td><code>LOGIN_LOCKOUT_MINUTES</code></td><td>۱۵</td><td>مدت قفل حساب به دقیقه.</td></tr>
+        <tr><td><code>LOGIN_RATE_LIMIT</code></td><td><code>8 per minute</code></td><td>سقف تلاش‌های ورود در بازهٔ زمانی.</td></tr>
+        <tr><td><code>RATELIMIT_STORAGE_URI</code></td><td><code>memory://</code></td><td>محل نگهداری شمارندهٔ محدودیت نرخ.</td></tr>
+        <tr><td><code>MIN_PASSWORD_LENGTH</code></td><td>۸</td><td>حداقل طول گذرواژهٔ حساب‌های مدیر.</td></tr>
+        <tr><td><code>ARCHIVE_UNDO_SECONDS</code></td><td>۶</td><td>مدت امکان لغو آرشیو پس از انجام آن، به ثانیه.</td></tr>
+        <tr><td><code>PAYRA_DEFAULT_ADMIN_USERNAME</code><br><code>PAYRA_DEFAULT_ADMIN_PASSWORD</code><br><code>PAYRA_DEFAULT_ADMIN_DISPLAY_NAME</code></td><td>مقادیر راه‌اندازی</td><td>فقط در نخستین اجرای <code>init-db</code> استفاده می‌شوند.</td></tr>
+        <tr><td><code>TIMEZONE</code></td><td><code>Asia/Tehran</code></td><td>منطقه زمانی پیش‌فرض.</td></tr>
+        <tr><td><code>LOG_LEVEL</code></td><td><code>INFO</code></td><td>سطح گزارش‌گیری برنامه.</td></tr>
+        <tr><td><code>LOG_TO_FILE</code><br><code>LOG_FILE</code></td><td><code>true</code><br><code>logs/payra.log</code></td><td>نوشتن لاگ در فایل و مسیر آن.</td></tr>
+        <tr><td><code>HOST</code><br><code>PORT</code></td><td><code>127.0.0.1</code><br><code>8000</code></td><td>نشانی و درگاه سرور.</td></tr>
+        <tr><td><code>ASSET_VERSION</code></td><td><code>1.2.1</code></td><td>شناسهٔ نسخه برای به‌روزرسانی فایل‌های ایستای ذخیره‌شده در مرورگر.</td></tr>
+      </tbody></table></div>
+      <div class="callout danger"><div class="c-ico" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div><div><strong>مقدار FLASK_ENV را صریح تنظیم کنید</strong>اگر <code>FLASK_ENV</code> تنظیم نشود یا مقدار ناشناخته داشته باشد، پیکربندی توسعه (با حالت اشکال‌زدایی) انتخاب می‌شود. در استقرار عملیاتی حتماً <code>FLASK_ENV=production</code> بگذارید.</div></div>
+      <ul>
+        <li>مقدار پیش‌فرض <code>RATELIMIT_STORAGE_URI</code> در حافظهٔ هر فرایند نگهداری می‌شود؛ اگر برنامه با چند فرایند اجرا می‌شود، یک مخزن مشترک تنظیم کنید تا محدودیت نرخ هماهنگ باشد.</li>
+        <li>حداکثر اندازهٔ هر درخواست ۸ مگابایت است.</li>
+        <li>محافظت CSRF فعال است و اعتبار توکن به نشست وابسته است، نه به زمان ساعت.</li>
+      </ul>
+    </section>
 
     <div class="no-results" id="noResults">بخشی مطابق جست‌وجوی شما پیدا نشد. عبارت دیگری امتحان کنید.</div>
 
